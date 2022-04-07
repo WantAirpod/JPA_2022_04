@@ -24,9 +24,9 @@ public class SwaggerConfig {
 
     private ApiInfo swaggerInfo() {
         return new ApiInfoBuilder()
-                .title("soosoo v1 API Documentation")
-                .description("soosoo v1 API 의 API문서 입니다")
-                .license("github").licenseUrl("https://github.com/soosooinc/soosoo_v1_api.git")
+                .title("API Documentation")
+                .description("API 의 API문서 입니다")
+                .license("github").licenseUrl("https://github.com/WantAirpod/idusProject.git")
                 .version("0.1.0")
                 .build();
     }

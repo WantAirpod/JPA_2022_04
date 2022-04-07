@@ -9,6 +9,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "tb_user")
 @DynamicInsert
@@ -17,29 +18,21 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Integer userId;
+    private Integer orderId;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String name;
+    private String orderSrl;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String nickName;
+    private String productName;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String password;
-
-    @Column(nullable = false, columnDefinition = "smallint")
-    private String phoneNumber;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String email;
-
-    @Column(nullable = true, columnDefinition = "TEXT")
-    private String sex;
+    private String orderDt;
 
 
 }
