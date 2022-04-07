@@ -11,8 +11,7 @@ import java.io.IOException;
 @SpringBootApplication
 public class OrderShopApplication {
 
-	public static void main(String[] args)throws IOException
-	{
+	public static void main(String[] args)throws IOException {
 		SpringApplication.run(OrderShopApplication.class, args);
 	}
 
