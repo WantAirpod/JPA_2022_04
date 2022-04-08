@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
     private final UserFacade userFacade;
@@ -26,9 +26,5 @@ public class UserController {
                         "불러오기 완료"
                 )
         );
-    }
-    @GetMapping("/")
-    public String test() {
-        return "login";
     }
 }

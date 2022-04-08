@@ -1,14 +1,16 @@
 package com.cjy9249.orderShop.controller.order;
 
 import com.cjy9249.orderShop.common.Response;
+import com.cjy9249.orderShop.domain.dto.OrderRequestDto;
 import com.cjy9249.orderShop.domain.entity.Order;
 import com.cjy9249.orderShop.service.order.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("order")
+@RequestMapping("/order")
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
@@ -24,10 +26,9 @@ public class OrderController {
                 )
         );
     }
-
-    @PostMapping("/{userId}/{orderId}/{orderSrl}/{productName}")
-    public String Order(@PathVariable("userId") Long userId,@PathVariable("orderSrl") String orderSrl,@PathVariable("orderId") Long orderId,@PathVariable("productName") String productName) {
-        orderService.order(userId,orderSrl,orderId,productName);
+    @PostMapping(value = "orderProduct", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String Order(@RequestBody OrderRequestDto request) {
+        orderService.order(request);
         return "redirect:/orders";
     }
 
