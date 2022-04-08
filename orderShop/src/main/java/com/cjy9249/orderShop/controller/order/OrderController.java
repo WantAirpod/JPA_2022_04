@@ -5,10 +5,7 @@ import com.cjy9249.orderShop.domain.entity.Order;
 import com.cjy9249.orderShop.service.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("order")
@@ -18,7 +15,7 @@ public class OrderController {
 
     @GetMapping("info")
     public ResponseEntity<Response<Order>> getUserInfo(
-            @RequestParam(value = "orderId") int orderId
+            @RequestParam(value = "orderId") Long orderId
     ) {
         return ResponseEntity.ok(
                 Response.of(
@@ -26,6 +23,12 @@ public class OrderController {
                         "불러오기 완료"
                 )
         );
+    }
+
+    @PostMapping("/{userId}/{orderId}/{orderSrl}/{productName}")
+    public String Order(@PathVariable("userId") Long userId,@PathVariable("orderSrl") String orderSrl,@PathVariable("orderId") Long orderId,@PathVariable("productName") String productName) {
+        orderService.order(userId,orderSrl,orderId,productName);
+        return "redirect:/orders";
     }
 
 

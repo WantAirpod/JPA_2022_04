@@ -1,9 +1,6 @@
 package com.cjy9249.orderShop.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @DynamicInsert
 @DynamicUpdate
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Integer userId;
+    private Long userId;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String name;
@@ -41,5 +39,7 @@ public class User {
     @Column(nullable = true, columnDefinition = "TEXT")
     private String sex;
 
+    /*@OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<>();*/
 
 }

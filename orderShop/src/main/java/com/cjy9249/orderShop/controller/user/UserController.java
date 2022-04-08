@@ -18,7 +18,7 @@ public class UserController {
 
     @GetMapping("info")
     public ResponseEntity<Response<User>> getUserInfo(
-            @RequestParam(value = "userId") int userId
+            @RequestParam(value = "userId") Long userId
     ) {
         return ResponseEntity.ok(
                 Response.of(

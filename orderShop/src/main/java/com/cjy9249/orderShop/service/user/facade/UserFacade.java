@@ -13,7 +13,7 @@ public class UserFacade {
     private final GetUserInfoService getUserInfoService;
 
     @Transactional(readOnly = true)
-    public User getUserInfo(int userId) {
+    public User getUserInfo(Long userId) {
         return getUserInfoService.getUserInfo(userId);
     }
 }

@@ -11,7 +11,7 @@ public class GetUserInfoService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public User getUserInfo(int userId) {
+    public User getUserInfo(Long userId) {
         return userRepository.findByUserId(userId);
     }
 }
