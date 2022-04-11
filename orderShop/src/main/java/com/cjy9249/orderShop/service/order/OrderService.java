@@ -2,9 +2,7 @@ package com.cjy9249.orderShop.service.order;
 
 import com.cjy9249.orderShop.domain.dto.OrderRequestDto;
 import com.cjy9249.orderShop.domain.entity.Order;
-
 import com.cjy9249.orderShop.domain.repository.order.OrderRepository;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +17,12 @@ public class OrderService {
 
     /**
      * 단일회원의 주문목록 조회
-     * @param userId
+     * @param email
      * @return
      */
     @Transactional(readOnly = true)
-    public List<Order> getOrderInfo(Long userId){
-        return orderRepository.findByUserId(userId);
+    public List<Order> getOrderInfo(String email){
+        return orderRepository.findByEmail(email);
     }
 
     /**
@@ -35,7 +33,7 @@ public class OrderService {
     @Transactional
     public Long order(OrderRequestDto request) {
         //주문 생성
-        Order order = Order.createOrder(request.getUserId(), request.getOrderSrl(), request.getProductName());
+        Order order = Order.createOrder(request.getProductName());
         //주문 저장
         orderRepository.save(order);
         return order.getOrderId();

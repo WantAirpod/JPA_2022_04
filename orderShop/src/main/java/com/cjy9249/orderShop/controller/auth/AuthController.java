@@ -22,18 +22,18 @@ import javax.validation.Valid;
 public class AuthController {
     private final AuthService authService;
 
-
-    @ApiOperation(value = "로그인 합니다.", notes = "설정한 이메일과 비밀번호로 로그인 합니다.")
+    @ApiOperation(value = "로그인", notes = "설정한 이메일과 비밀번호로 로그인 합니다.")
     @PostMapping(value = "login", produces = MediaType.APPLICATION_JSON_VALUE)
     public String login(@RequestBody JwtRequestDto request) {
         try {
-            return authService.login(request) + "반갑습니다.";
+            authService.login(request);
+            return request.getEmail() + " 님 반갑습니다.";
         } catch (Exception e) {
             return e.getMessage();
         }
     }
 
-    @ApiOperation(value = "로그아웃 합니다.", notes = "로그아웃과 함께 페이지 페이지 접근 권한이 사라집니다.")
+    @ApiOperation(value = "로그아웃", notes = "로그아웃과 함께 페이지 페이지 접근 권한이 사라집니다.")
     @GetMapping("logout")
     public String logout(HttpServletRequest request , HttpServletResponse response) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -44,18 +44,12 @@ public class AuthController {
         return "로그인 해주세요.";
     }
 
-    @ApiOperation(value = "회원 가입합니다.",
+    @ApiOperation(value = "회원 가입",
             notes = "")
     @PostMapping(value = "signup", produces = MediaType.APPLICATION_JSON_VALUE)
     public String signup(@RequestBody @Valid MemberSignupRequestDto request) {
         //Map<String, String> vaildatorResult = MemberService.validateHandling(errors);
         return authService.signup(request);
-    }
-
-
-    @GetMapping("check")
-    public String loginCheck() {
-        return "check";
     }
 
 }

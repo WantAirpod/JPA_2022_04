@@ -24,7 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/image/**",
             "/swagger/**",
             "/swagger-ui/**",
-            // other public endpoints of your API may be appended to this array
             "/h2/**",
             "/h2_db/**"
     };
@@ -46,9 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // login 없이 접근 허용 하는 url
                 .antMatchers("/auth/**").permitAll()
                 // '/admin'의 경우 ADMIN 권한이 있는 사용자만 접근이 가능
-                .antMatchers("/admin").hasRole("ADMIN")
-                // 로그인 체크
-                .antMatchers("/auth/check").hasRole("LoginCheck")
+                //.antMatchers("/admin").hasRole("ADMIN")
+                //테스트를 위해 로그인 없이 모든 접근 허용
+                .antMatchers("/**").permitAll()
                 // 그 외 모든 요청은 인증과정 필요
                 .anyRequest().authenticated();
     }

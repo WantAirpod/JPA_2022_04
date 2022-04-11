@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
     private final MemberService memberService;
 
-
     @ApiOperation(value = "회원 정보 조회", notes = "이메일로 단일 회원 상세정보 조회 합니다.")
     @GetMapping("info")
     public ResponseEntity<Response<Member>> getUserInfo(

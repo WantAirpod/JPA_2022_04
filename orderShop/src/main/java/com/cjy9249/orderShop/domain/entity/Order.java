@@ -1,8 +1,10 @@
 package com.cjy9249.orderShop.domain.entity;
 
+import com.cjy9249.orderShop.service.security.UserDetailsImpl;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,33 +26,29 @@ public class Order {
     @Column(unique = true, nullable = false)
     private Long orderId;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user; //주문 회원*/
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private Long userId;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String orderSrl;
-
     @Column(nullable = false, columnDefinition = "TEXT")
     private String productName;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private LocalDateTime orderDt;
 
-    /*//연관관계 메서드
-    public void setUser(User user){
-        this.user = user;
-        user.getOrders().add(this);
-    }*/
-    public static Order createOrder(Long userId, String orderSrl, String productName){
+    //추가
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String name;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String email;
+
+    public static Order createOrder(String productName){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl)principal;
+
         Order order = new Order();
-        order.setUserId(userId); //주문자 아이디
-        order.setOrderSrl(orderSrl); //주문 srl 넘버
-        order.setProductName(productName); // 주문
-        order.setOrderDt(LocalDateTime.now()); // 주문 시간 정보
+        order.setProductName(productName);
+        order.setOrderDt(LocalDateTime.now());
+        //추가
+        order.setName(userDetails.getUsername());
+        order.setEmail(userDetails.getEmail());
         return order;
     }
 
