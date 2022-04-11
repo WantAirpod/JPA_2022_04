@@ -49,8 +49,8 @@ public class Order {
         Order order = new Order();
         order.setUserId(userId); //주문자 아이디
         order.setOrderSrl(orderSrl); //주문 srl 넘버
-        order.setProductName(productName); //주문
-        order.setOrderDt(LocalDateTime.now()); /* 주문 시간 정보 */
+        order.setProductName(productName); // 주문
+        order.setOrderDt(LocalDateTime.now()); // 주문 시간 정보
         return order;
     }
 

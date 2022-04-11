@@ -36,7 +36,6 @@ public class AuthService {
 
     public String signup(MemberSignupRequestDto request) {
         boolean existMember = memberRepository.existsById(request.getEmail());
-
         // 이미 회원이 존재하는 경우
         if (existMember) return null;
         Member member = new Member(request);

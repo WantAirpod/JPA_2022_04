@@ -1,7 +1,5 @@
 package com.cjy9249.orderShop.service.order;
 
-import com.cjy9249.orderShop.domain.entity.User;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +12,7 @@ public class OrderServiceTest {
     @Autowired
     EntityManager em;
 
-    @Test
+ /*   @Test
     public void 회원가입() throws Exception{
         User user = new User();
         user.setName("야무치");
@@ -25,7 +23,7 @@ public class OrderServiceTest {
         user.setEmail("123@naver.com");
         user.setUserId(123L);
         em.persist(user);
-    }
+    }*/
 
 
 

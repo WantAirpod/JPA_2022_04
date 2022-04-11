@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/order")
 @RequiredArgsConstructor
@@ -16,12 +18,12 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping("info")
-    public ResponseEntity<Response<Order>> getUserInfo(
-            @RequestParam(value = "orderId") Long orderId
+    public ResponseEntity<Response<List<Order>>> getUserInfo(
+            @RequestParam(value = "userId") Long userId
     ) {
         return ResponseEntity.ok(
                 Response.of(
-                        orderService.getOrderInfo(orderId),
+                        orderService.getOrderInfo(userId),
                         "불러오기 완료"
                 )
         );
