@@ -25,7 +25,7 @@ public class SwaggerConfig {
     private ApiInfo swaggerInfo() {
         return new ApiInfoBuilder()
                 .title("API Documentation")
-                .description("API 의 API문서 입니다")
+                .description("cjy9249 orderShop API문서 입니다")
                 .license("github").licenseUrl("https://github.com/WantAirpod/idusProject.git")
                 .version("0.1.0")
                 .build();

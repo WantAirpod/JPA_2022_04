@@ -26,17 +26,17 @@ public class Order {
     @Column(unique = true, nullable = false)
     private Long orderId;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "VARCHAR(100)")
     private String productName;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private LocalDateTime orderDt;
 
     //추가
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String name;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "VARCHAR(100)")
     private String email;
 
     public static Order createOrder(String productName){

@@ -21,21 +21,24 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Member {
     @Id
+    @Column(columnDefinition = "VARCHAR(100)")
     private String email;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String name;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String password;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "VARCHAR(10)")
     private Sex sex;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "VARCHAR(10)")
     private Role role;
 
     public Member(MemberSignupRequestDto request) {

@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +34,7 @@ public class OrderController {
         );
     }
     @ApiOperation(value = "주문", notes = "주문하기")
-    @PostMapping(value = "order-product", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "order-product")
     public String Order(@RequestBody OrderRequestDto request) {
         orderService.order(request);
         return "redirect:/orders";
@@ -48,5 +47,6 @@ public class OrderController {
         return orderRepository.findAll(pageRequest);
         //return orderRepository.findAllByOrderByOrderDtDesc(pageRequest);
     }
+
 
 }
