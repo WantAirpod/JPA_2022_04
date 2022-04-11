@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * created by cjy9249
+ * 회원 정보 조회 기능 Controller
+ */
 @RestController
 @RequestMapping("/member")
 @RequiredArgsConstructor

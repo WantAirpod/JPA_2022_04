@@ -27,7 +27,7 @@ public class Member {
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String name;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
@@ -50,6 +50,10 @@ public class Member {
         role = Role.LOGINCHECK; // 회원가입하는 사용자 권한 기본 USER (임시)
     }
 
+    /**
+     * 암호화하여 DB에 저장
+     * @param passwordEncoder
+     */
     public void encryptPassword(PasswordEncoder passwordEncoder) {
         password = passwordEncoder.encode(password);
     }

@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+/**
+ * created by cjy9249
+ * 로그인 / 로그아웃 / 회원가입 기능 Controller
+ */
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
@@ -45,11 +49,13 @@ public class AuthController {
     }
 
     @ApiOperation(value = "회원 가입",
-            notes = "")
+            notes = "이름 : 한글, 영문 대소문자만 허용, " +
+                    "별명 : 영어 소문자만 허용, " +
+                    "비밀번호 : 영문 대문자, 영문 소문자, 특수 문자, 숫자 각 1개 이상씩 포함, " +
+                    "전화번호 : 숫자, " +
+                    "이메일 : 이메일 형식")
     @PostMapping(value = "signup", produces = MediaType.APPLICATION_JSON_VALUE)
     public String signup(@RequestBody @Valid MemberSignupRequestDto request) {
-        //Map<String, String> vaildatorResult = MemberService.validateHandling(errors);
-        return authService.signup(request);
+        return authService.signup(request) != null ? request.getEmail() + "님 회원가입 되었습니다." : "이미 존재하는 이메일 입니다." ;
     }
-
 }

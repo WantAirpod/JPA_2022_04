@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order,Integer>, OrderRepositoryCustom {
     List<Order> findByEmail(String email);
-    //Page<Order> findAllByOrderByOrderDtDesc(Pageable pageable);
 }
