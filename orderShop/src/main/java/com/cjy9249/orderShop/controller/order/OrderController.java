@@ -1,6 +1,7 @@
 package com.cjy9249.orderShop.controller.order;
 
 import com.cjy9249.orderShop.common.Response;
+import com.cjy9249.orderShop.domain.dto.LastOrderDto;
 import com.cjy9249.orderShop.domain.dto.OrderRequestDto;
 import com.cjy9249.orderShop.domain.entity.Order;
 import com.cjy9249.orderShop.service.order.OrderService;
@@ -49,9 +50,8 @@ public class OrderController {
     }
 
     @ApiOperation(value = "마지막 주문 정보 조회", notes = "이름, 이메일을 이용하여 검색 기능 및 마지막 주문 정보를 조회한다.")
-    @GetMapping(value = "orderDetail")
-    public List<Order> orderDetail(@RequestParam(value = "email") String email, @RequestParam(value = "name") String name) {
-        return orderService.findLastOrder(email,name);
+    @PostMapping(value = "last-order")
+    public List<Order> getLastOrder(@RequestBody LastOrderDto request) {
+        return orderService.findLastOrder(request.getEmail(),request.getName());
     }
-
 }
