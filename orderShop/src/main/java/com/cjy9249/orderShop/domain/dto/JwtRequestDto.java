@@ -1,8 +1,7 @@
 package com.cjy9249.orderShop.domain.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter

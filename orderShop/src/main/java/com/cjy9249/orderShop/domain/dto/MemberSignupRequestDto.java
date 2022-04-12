@@ -3,6 +3,7 @@ package com.cjy9249.orderShop.domain.dto;
 
 import com.cjy9249.orderShop.domain.model.Sex;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
+@Builder
 public class MemberSignupRequestDto implements Serializable {
     @NotBlank(message = "이메일은 필수 입력 값입니다.")
     @Email(message = "이메일 형식에 맞지 않습니다.")
