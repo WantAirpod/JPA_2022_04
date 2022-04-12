@@ -41,14 +41,17 @@ public class Order {
 
     public static Order createOrder(String productName){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetailsImpl userDetails = (UserDetailsImpl)principal;
-
         Order order = new Order();
         order.setProductName(productName);
         order.setOrderDt(LocalDateTime.now());
-        //추가
-        order.setName(userDetails.getUsername());
-        order.setEmail(userDetails.getEmail());
+        if(principal!="anonymousUser"){
+            UserDetailsImpl userDetails = (UserDetailsImpl)principal;
+            order.setName(userDetails.getUsername());
+            order.setEmail(userDetails.getEmail());
+        }else {
+            order.setEmail("anonymousUser@google.com");
+            order.setName((String)principal);
+        }
         return order;
     }
 

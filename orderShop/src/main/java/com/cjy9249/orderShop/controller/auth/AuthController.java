@@ -41,11 +41,10 @@ public class AuthController {
     @GetMapping("logout")
     public String logout(HttpServletRequest request , HttpServletResponse response) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-            return "로그아웃 되었습니다.";
-        }
-        return "로그인 해주세요.";
+        if(auth.getPrincipal()=="anonymousUser")
+            return "로그인 해주세요.";
+        new SecurityContextLogoutHandler().logout(request, response, auth);
+        return "로그아웃 되었습니다.";
     }
 
     @ApiOperation(value = "회원 가입",

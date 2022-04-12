@@ -37,7 +37,7 @@ public class OrderController {
     }
     @ApiOperation(value = "주문", notes = "주문하기")
     @PostMapping(value = "order-product")
-    public Long orderProduct(@RequestBody OrderRequestDto request) {
+    public String orderProduct(@RequestBody OrderRequestDto request) {
         return orderService.order(request);
     }
 

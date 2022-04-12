@@ -1,5 +1,7 @@
 package com.cjy9249.orderShop.service.order;
 
+import com.cjy9249.orderShop.common.ErrorCode;
+import com.cjy9249.orderShop.common.exception.BaseException;
 import com.cjy9249.orderShop.domain.dto.OrderRequestDto;
 import com.cjy9249.orderShop.domain.entity.Order;
 import com.cjy9249.orderShop.domain.repository.order.OrderRepository;
@@ -21,8 +23,11 @@ public class OrderService {
      * @param email
      * @return
      */
-    public List<Order> findOrderInfo(String email){
-        return orderRepository.findByEmail(email);
+    public List<Order> findOrderInfo(String email) throws BaseException{
+        List<Order> findOrderInfoList = orderRepository.findByEmail(email);
+        if(findOrderInfoList.isEmpty())
+            throw new BaseException("해당하는 주문이 없습니다.", ErrorCode.COMMON_NOT_FOUND);
+        return findOrderInfoList;
     }
 
     /**
@@ -31,12 +36,12 @@ public class OrderService {
      * @return
      */
     @Transactional
-    public Long order(OrderRequestDto request) {
+    public String order(OrderRequestDto request) {
         //주문 생성
         Order order = Order.createOrder(request.getProductName());
         //주문 저장
         orderRepository.save(order);
-        return order.getOrderId();
+        return order.getName() + " 님 " + order.getProductName() +" 주문이 완료 되었습니다.";
     }
 
     /**
@@ -55,9 +60,9 @@ public class OrderService {
      * @return
      */
     public List<Order> findLastOrder(String email, String name){
-        return orderRepository.getUserOrderList(email,name);
-
+        List<Order> findLastOrder = orderRepository.getUserOrderList(email,name);
+        if(findLastOrder.isEmpty())
+            throw new BaseException("해당하는 주문이 없습니다.", ErrorCode.COMMON_NOT_FOUND);
+        return findLastOrder;
     }
-
-
 }
